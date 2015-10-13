@@ -1,1 +1,124 @@
-/* Your stylesheet goes here */
+@import https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css;
+
+
+body {
+   font-family:Lato , Helvetica Neue,  Helvetica, sans-serif;
+   font-weight: 300; 
+   font-size: 16px;
+   background-color: #E9EAEE;
+}
+
+svg {
+    height: 16px;
+    fill: white;
+    display: inline-block
+    padding: 0.5em;
+}
+
+svg:hover {
+    fill: #d87e28;
+}
+
+.container {
+    font-family:Raleway , Helvetica Neue, Helvetica, sans-serif;
+    color: white;
+    padding-top: 3em;
+    padding-right: 2em;
+    text-align: right;
+    background-image: img/background-sm.jpg;
+    min-height: 550px:
+}
+
+nav {
+    top: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    color: white;
+    background-color: #181c22;
+    padding-right: 0.5em;
+}
+
+a:link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em;
+    font-variant: small-caps;
+}
+
+a:hover {
+    color: #d87e28;
+    fill: #d87e28;
+}
+
+
+li {
+    display: inline-block;
+    width: 50px;
+    height: 16px;
+    padding-right: 25px;
+}
+
+@media (max-width: 768px){
+    p {
+        display: none;
+    }
+    .logo {
+        display: none;
+    }
+}
+
+@media (min-width: 768px){
+    body {
+      font-size: 20px;
+      background-color: white;
+    }
+    nav {
+        color: white;
+        background-color: rgba(24, 28, 34, 0.8);
+    }
+    
+    .container {
+        height: 550px;
+        background-image: url(../img/background-sm.jpg);
+        background-repeat: no-repeat;
+        color: white;
+        text-align: right;
+    }
+    
+    .logo {
+        height: 1.5em;
+        width: 100%;
+        padding-bottom: 1em:
+        fill: #d87e28;
+    }
+    
+    p3 {
+        padding-bottom: 3em;
+        font-style: italic;
+    }
+    
+    svg {
+        height: 20px;
+    }
+    
+    .container2 {
+        padding-top: 3em;
+        text-align: center;
+    }
+    
+}
+
+@media (min-width: 992px){
+    .container {
+        background-image: url(../img/background-md.jpg);
+        background-repeat: no-repeat;
+    }
+}
+
+@media (min-width: 1200px){
+    .container {
+        background-image: url(../img/background-lg.jpg);
+        background-repeat: no-repeat;
+    }
+}
