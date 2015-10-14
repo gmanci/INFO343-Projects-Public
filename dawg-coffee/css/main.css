@@ -1,4 +1,4 @@
-@import https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css;
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
 
 
 body {
@@ -100,6 +100,10 @@ li {
     
     svg {
         height: 20px;
+    }
+
+    header p {
+        display: inline;
     }
     
     .container2 {
