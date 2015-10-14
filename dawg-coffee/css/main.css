@@ -19,6 +19,20 @@ svg:hover {
     fill: #d87e28;
 }
 
+.nonlinkicon svg {
+    fill: #d87e28;
+}
+
+.nonlinkicon h1 {
+    color: #d87e28;
+    text-transform: bold;
+}
+
+#menu dd {
+    text-indent: 1em;
+    font-style: italic;
+}
+
 .container {
     font-family:Raleway , Helvetica Neue, Helvetica, sans-serif;
     color: white;
@@ -46,6 +60,10 @@ a:link {
     font-variant: small-caps;
 }
 
+.nonlinkicon img {
+    border-radius: 5px;
+}
+
 a:hover {
     color: #d87e28;
     fill: #d87e28;
@@ -54,9 +72,39 @@ a:hover {
 
 li {
     display: inline-block;
-    width: 50px;
+    width: 100px;
     height: 16px;
     padding-right: 25px;
+    padding-top: 10px;
+}
+
+#info {
+    background-color: #dbdce3;
+    text-align: center;
+    border-radius: 5px;
+}
+
+
+#ourstory, footer {
+    background-color: #dbdce3;
+}
+
+#ourstory img {
+    float: right;
+    max-height: 300px;
+    margin-left: 1em;
+}
+
+footer {
+    border-top-style: solid;
+    border-top-width: 3px; 
+    border-top-color: #d87e28;
+    font-size: 12px;
+    background-color: #afb3c2;
+}
+
+footer.p, footer.p2 {
+    margin-top: 1em;
 }
 
 @media (max-width: 768px){
@@ -80,13 +128,15 @@ li {
     
     .container {
         height: 550px;
+        width: 100%;
         background-image: url(../img/background-sm.jpg);
         background-repeat: no-repeat;
         color: white;
         text-align: right;
+
     }
     
-    .logo {
+    .logo.svg{
         height: 1.5em;
         width: 100%;
         padding-bottom: 1em:
@@ -105,10 +155,22 @@ li {
     header p {
         display: inline;
     }
+
+    #menu h1 {
+        text-align: center;
+    }
     
     .container2 {
         padding-top: 3em;
         text-align: center;
+    }
+
+    #ourstory img {
+        max-height: 400px;
+    }
+
+    footer.p2 {
+        text-align: right;
     }
     
 }
@@ -117,6 +179,12 @@ li {
     .container {
         background-image: url(../img/background-md.jpg);
         background-repeat: no-repeat;
+    }
+    #ourstory h1 {
+        text-align: center;
+    }
+    footer {
+        text-align: vertical;
     }
 }
 
