@@ -13,18 +13,31 @@
 
     <!-- Leaflet stylesheet -->
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+    
 
     <!-- your stylesheet -->
     <link rel="stylesheet" href="css/main.css"/>
 
     <!-- page icon -->
-    <link rel="icon" href="img/page-icon.png"/></head>
+    <link rel="icon" href="img/page-icon.png"/>
+    
+</head>
+    
+    
 <body>
+    <div id="info">
+        <h1>
+            Victims of police shootings
+        </h1>
+        <p>
+        The data below shows recent injuries and deaths that occured due to police shootings. Interact with the element at the top right to show armed victims, which show in light blue, and unarmed victims, which appear in dark blue. There are 1309 armed victims and 789 unarmed victims.
+        </p>
+    </div>
 
-    <div id="map-container"></div>
+    <!-- map container -->
+    <div id="map"></div>
 
     <!-- MORE HTML GOES HERE -->
-
 
     <!-- jQuery library -->
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -33,6 +46,7 @@
     <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
 
     <!-- your script file -->
+    <script src="js/app.js"></script>
     <!-- LOAD YOUR SCRIPT FILE HERE -->
 </body>
 </html>

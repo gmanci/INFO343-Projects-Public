@@ -1,1 +1,15 @@
 /* add your CSS rules here */
+#map { 
+    height: 600px;
+}
+
+/* header and paragraph at top of page*/
+#info {
+    font-family: "Helvetica-Neue", sans-serif;
+    color: midnightblue;
+}
+
+/* header */
+#info.h1 {
+    text-align: center;
+}
