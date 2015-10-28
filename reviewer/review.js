@@ -49,13 +49,12 @@ var fetchInfo = new function(){
                     console.log(info.get('rating'));
                     return info.get('rating');
                 }});
-            var title = info.get('title');//.replace(/</g, "&lt;").replace(/</g, "&gt;");
-            var content = info.get('content');//.replace(/</g, "&lt;").replace(/</g, "&gt;");
-            
-            var past = /*rating +*/ "<br>" + title + "<br>" + content + "<br>";
+            var title = info.get('title').replace(/</g, "&lt;").replace(/</g, "&gt;");
+            var content = info.get('content').replace(/</g, "&lt;").replace(/</g, "&gt;");
+            var past = /*rating  "<br>" ++*/ title + "<br>" + content + "<br>";
             $('#pastReviews').append("<div id='pastReviews"+info.id+"'>" + past + "</div>"+ "<br>"+ "<br>");
-            $("#pastReviews"+info.id).html(past);
             $('#pastReviews').append(rating);
+            $("#pastReviews"+info.id).html(past);
         });
      });
 };
