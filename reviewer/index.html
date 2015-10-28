@@ -9,17 +9,49 @@
     <!-- page information -->
     <meta name="description" content="...page description...">
     <meta name="author" content="...your name...">
-    <title>Something Reviews</title>
+    <link rel="stylesheet" href="review.css">
+    <title>Nathan for You Reviews</title>
 
 </head>
 <body>
-
+    <main class="container-fluid">
+    
+    <h1>Nathan for You: A Review Page</h1>
+    <img id="nathan" src="nathanpic.jpg">
+    
+    
+    <div id = starRating></div>
+    
+    <form id="nathanReview" method='GET'>
+        <div class="col-md-4">
+        <p>
+            <div id = starRating></div>
+            <label for="title">Review Title</label>
+            <input type="text" name="selector" id="title" placeholder="review title"> <br>
+            <label for="content">Review:</label>
+            <input type="text" name="content" id="content" placeholder="review body"> <br>
+            <button id="Submit" type="submit" class="btn btn-default">Submit</button>
+        </p>
+        </div>
+    </form>
+    
+    <form class="col-md-4">
+            <div id = pastReviews></div>
+    </form>
     
     <!-- jQuery library -->
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     
     <!-- Parse.com library -->
     <script src="https://www.parsecdn.com/js/parse-1.6.0.min.js"></script>
-
+    
+    <!-- my personal javascript -->
+    <script src="review.js"></script>
+    
+    <!-- raty -->
+    <script src="raty-2.7.0/lib/jquery.raty.js"></script>
+    
+    
+    </main>
 </body>
 </html>
