@@ -11,10 +11,10 @@ var reviewRating;
 
 
 
-$('#starRating').raty({
-    starOn: "raty-2.7.0/lib/images/star-on.png",
-    starOff: "raty-2.7.0/lib/images/star-off.png"
-});
+//$('#starRating').raty({
+//    starOn: "raty-2.7.0/lib/images/star-on.png",
+//    starOff: "raty-2.7.0/lib/images/star-off.png"
+//});
 
 $('#nathanReview').on('submit', function(event){
     var review1 = new Review();
@@ -41,12 +41,20 @@ var fetchInfo = new function(){
     query.find().then(function(results) {
         results.forEach(function(info) {
             var ratingDiv = "<div class='stars'></div>";
-            var rating = $(ratingDiv).raty({ starOn: "raty-  2.7.0/lib/images/star-on.png",    starOff: "raty-2.7.0/lib/images/star-off.png", readOnly: true, score: info.get('rating') });
-            var title = info.get('title').replace(/</g, "&lt;").replace(/</g, "&gt;");
-            var content = info.get('content').replace(/</g, "&lt;").replace(/</g, "&gt;");;
+            var rating = $(ratingDiv).raty({ 
+                starOn: "raty-2.7.0/lib/images/star-on.png",
+                starOff: "raty-2.7.0/lib/images/star-off.png",
+                readOnly: true,
+                score: function() {
+                    console.log(info.get('rating'));
+                    return info.get('rating');
+                }});
+            var title = info.get('title');//.replace(/</g, "&lt;").replace(/</g, "&gt;");
+            var content = info.get('content');//.replace(/</g, "&lt;").replace(/</g, "&gt;");
             
             var past = /*rating +*/ "<br>" + title + "<br>" + content + "<br>";
-            $('#pastReviews').append("<div id='pastReviews'>" + past + "</div>"+ "<br>"+ "<br>");
+            $('#pastReviews').append("<div id='pastReviews"+info.id+"'>" + past + "</div>"+ "<br>"+ "<br>");
+            $("#pastReviews"+info.id).html(past);
             $('#pastReviews').append(rating);
         });
      });
