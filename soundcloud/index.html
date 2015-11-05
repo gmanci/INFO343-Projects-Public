@@ -18,26 +18,42 @@
 </head>
 <body>
   <div class="container" ng-app="myApp" ng-controller="MyCtrl"> <!-- specify app -->
-
     <form name="trackForm">
       <div class="form-group">
+<!--
+        <label for="name">Your Name:</label>
+          <input type="text" name="name" id="name" class="form-control" ng-model="query">
+          <p ng-show="postForm.name.$invalid" class="help-block">You must have a name.</p>
+-->
         <label>SoundCloud search:</label>
         <!-- bind the search term to the controller -->
         <input name="search" placeholder="Search for a track..." ng-model="query" class="form-control"></input>
+        <p ng-show="postForm.name.$invalid" class="help-block">You must have a name.</p>
       </div>
       <div class="form-group">
         <!-- call method on click -->
         <button class="btn btn-primary" ng-click="getTracks()" type="submit">Submit</button>
       </div>
     </form>     
+    <table class="table">
+        <div ng-if="tracks"> <!-- only show results if we've done a search -->
+          <p>Tracks found:</p>
+            <table class="table">
+			<tr>
+				<th><a href="" ng-click="sortingCriteria='title'">Title</a></th>
+				<th><a href="" ng-click="sortingCriteria='username '">User</a></th>
+				<th><a href="" ng-click="sortingCriteria='created_at'">Date/Time Created</a></th>
+			</tr>
+			<tr ng-repeat="track in tracks | orderBy:sortingCriteria | filter:searchQuery">
+				<td><a href="{{track.permalink_url}}">{{track.title}}</a></td>
+				<td><a href="http://soundcloud.com/"{{user.username}}>{{track.user.username}}</a></td>
+				<td>{{track.created_at}}</td>
+			</tr>
+            </table>
 
-    <div ng-if="tracks"> <!-- only show results if we've done a search -->
-      <p>Tracks found:</p>
-      <ul>
-        <li ng-repeat="track in tracks"><i>{{track.title}}</i> by {{track.user.username}}</li>
-      </ul>
-    </div>
-
+        </div>
+        
+    </table>
   </div> <!-- end container -->
 </body>
 </html>
