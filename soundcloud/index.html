@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <title>SoundCloud Example</title>
+  <title>SoundCloud Search Assistant</title>
   
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
@@ -16,19 +16,21 @@
   <script src="js/app.js"></script>
 
 </head>
-<body>
+<body> 
   <div class="container" ng-app="myApp" ng-controller="MyCtrl"> <!-- specify app -->
-    <form name="trackForm">
+    <form name="trackForm" ng-submit="submitForm(userForm.$valid)" novalidate>
       <div class="form-group">
+          <h1>SoundCloud Search Assistant</h1>
 <!--
-        <label for="name">Your Name:</label>
-          <input type="text" name="name" id="name" class="form-control" ng-model="query">
-          <p ng-show="postForm.name.$invalid" class="help-block">You must have a name.</p>
--->
-        <label>SoundCloud search:</label>
+          <label>Are you a dog or cat person?</label>
+          <input type="text" name="title" id="title" class="form-control" required ng-minlength="3">
+          <p ng-if="postForm.title.$invalid" class="help-block small">Response must be dog</p>
+-->                     
+      </div>
+      <div class="form-group">
         <!-- bind the search term to the controller -->
-        <input name="search" placeholder="Search for a track..." ng-model="query" class="form-control"></input>
-        <p ng-show="postForm.name.$invalid" class="help-block">You must have a name.</p>
+        <input type="text" name="search" placeholder="SoundCloud search" ng-model="query" class="form-control" ng-minlength="2">
+        <p ng-if="postForm.title.$invalid" class="help-block small">Song must be 2+ characters</p>
       </div>
       <div class="form-group">
         <!-- call method on click -->
@@ -37,16 +39,18 @@
     </form>     
     <table class="table">
         <div ng-if="tracks"> <!-- only show results if we've done a search -->
-          <p>Tracks found:</p>
+<!--          <p>Tracks found:</p>-->
             <table class="table">
 			<tr>
+                <th></th>
 				<th><a href="" ng-click="sortingCriteria='title'">Title</a></th>
 				<th><a href="" ng-click="sortingCriteria='username '">User</a></th>
-				<th><a href="" ng-click="sortingCriteria='created_at'">Date/Time Created</a></th>
+				<th><a href="" ng-click="sortingCriteria='!created_at'">Freshness</a></th>
 			</tr>
 			<tr ng-repeat="track in tracks | orderBy:sortingCriteria | filter:searchQuery">
+                <td><img src="{{track.artwork_url}}"></td>
 				<td><a href="{{track.permalink_url}}">{{track.title}}</a></td>
-				<td><a href="http://soundcloud.com/"{{user.username}}>{{track.user.username}}</a></td>
+				<td><a href="{{track.user.permalink_url}}">{{track.user.username}}</a></td>
 				<td>{{track.created_at}}</td>
 			</tr>
             </table>
