@@ -28,40 +28,32 @@
 
 angular.module('myApp', ['ngSanitize', 'ui.router'])
     .config(function($stateProvider) {
-      // For any unmatched url, redirect to /state1
-//      $urlRouterProvider.otherwise("/home");
-      // Now set up the states
       $stateProvider
         .state('home', {
-          url: "/",
+          url: "/home",
           templateUrl: "partials/home.html"
         })
-    //    .state('order.list', {
-    //      url: "/list",
-    //      templateUrl: "partials/state1.list.html",
-    //      controller: function($scope) {
-    //        $scope.items = ["A", "List", "Of", "Items"];
-    //      }
-    //    })
+        .state('order.bean', {
+          url: "#/order#bean",
+          templateUrl: "partials/bean.html"
+        })
         .state('order', {
           url: "/order",
           templateUrl: "partials/order.html"
         });
-    });
+    })
 
 
 
+.controller('CoffeeCtlr', ['$scope', '$http', function($scope, $http){
 
+	$scope.sortingCriteria = '';
 
-//.controller('CoffeeCtlr', ['$scope', '$http', function($scope, $http){
-//
-//	$scope.sortingCriteria = '';
-//
-//	$http.get('data/products.json').then(function(response) {
-// 		$scope.movies = response.data;
-// 	});
-//
-//}]);
+	$http.get('data/products.json').then(function(response) {
+ 		$scope.beans = response.data;
+ 	});
+
+}]);
 //
 ////For movie data browser
 //.controller('OrderCtlr', ['$scope', '$http', function($scope, $http) {

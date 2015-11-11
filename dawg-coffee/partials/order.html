@@ -2,28 +2,24 @@
     <h1>
     Dawg Coffee<br>Orders
     </h1>
-    <p>
-    Coming soon...
-    </p>
 </div>
 
 <div class="form-group">
-        <!-- bind the search term to the controller -->
-        <input type="text" name="search" placeholder="Search beans..." ng-model="query" class="form-control">
-</div>
+        <!-- call method on click -->
+        <label>Search beans: <input ng-model="searchText"></label>
+      </div>
 
 <div class="beanSelection">
     <table class="table">
 			<tr>
                 <th></th>
-				<th>Beans</th>
+				<th>Beans (click for more info)</th>
 				<th>Origin</th>
 			</tr>
-			<tr ng-repeat="bean in beans | orderBy:{{name}} | filter:searchQuery">
-                <td><img src="{{track.artwork_url}}"></td>
-				<td><a href="{{track.permalink_url}}">{{track.title}}</a></td>
-				<td><a href="{{track.user.permalink_url}}">{{track.user.username}}</a></td>
-				<td>{{track.created_at}}</td>
+			<tr ng-repeat="bean in beans | orderBy:bean.name | filter:searchText">
+                <td><img class="beanPic" src="{{bean.image}}"></td>
+                <td><a class="beanLink" href="#/order#{{bean.id}}">{{bean.name}}</a></td>
+				<td>{{bean.grower.name}}</td>
 			</tr>
             </table>
 </div>

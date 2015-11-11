@@ -8,6 +8,10 @@ body {
    background-color: #E9EAEE;
 }
 
+.beanPic {
+    width: 250px;
+}
+
 svg {
     height: 16px;
     fill: white;
@@ -53,21 +57,36 @@ nav {
     padding-right: 0.5em;
 }
 
-a:link {
+.navlink {
     color: white;
     text-decoration: none;
     padding: 0.5em;
     font-variant: small-caps;
 }
 
+#cart {
+    text-align: right;
+}
+
+.beanLink {
+    color: black;
+}
+
 .nonlinkicon img {
     border-radius: 5px;
 }
 
-a:hover {
+.navlink:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.navlink:hover {
     color: #d87e28;
     fill: #d87e28;
+    text-decoration: none;
 }
+
 
 
 li {
