@@ -1,20 +1,30 @@
 <div class="container">
     <h1>
-    Bean Bio
+    {{bean.name}}
     </h1>
 </div>
 
-<div class="beanSelection">
-    <table class="table">
-			<tr>
-                <th></th>
-				<th>Bean</th>
-				<th>Origin</th>
-			</tr>
-			<tr>
-                <td><img class="beanPic" src="{{bean.image}}"></td>
-				<td>{{bean.name}}</td>
-				<td>{{bean.grower.name}}</td>
-			</tr>
-            </table>
+<section id="beanInfo" class="row">
+<div class="text-center" class="col-med-4"><h2>{{bean.name}}:<br> <small>{{bean.description}}</small></h2>
 </div>
+ 
+<div class="text-center" class="col-med-4">
+    <img src="{{bean.image}}">
+</div>
+
+<!--
+<div class="text-center" class="col-med-4"><p><small>{{bean.grower.name}}</small></p></div>
+
+	<div>
+		<dl>
+			<dt>Price:</dt>
+			<dd>{{bean.price | currency:'$':0}}</dd>
+		</dl>
+	</div>
+
+	<div class="col-med-4"> 
+        asdf
+	</div>
+-->
+    
+</section>
