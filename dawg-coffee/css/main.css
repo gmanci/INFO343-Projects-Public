@@ -114,6 +114,20 @@ li {
     margin-left: 1em;
 }
 
+#beanInfo img {
+    float: right;
+    max-width: 300px;
+    margin-left: 1em;
+    border-radius: 5px;
+}
+
+#growerInfo img {
+    float: left;
+    max-width: 300px;
+    margin-right: 1em;
+    border-radius: 5px;
+}
+
 footer {
     border-top-style: solid;
     border-top-width: 3px; 

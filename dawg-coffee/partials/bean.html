@@ -5,26 +5,38 @@
 </div>
 
 <section id="beanInfo" class="row">
-<div class="text-center" class="col-med-4"><h2>{{bean.name}}:<br> <small>{{bean.description}}</small></h2>
-</div>
- 
-<div class="text-center" class="col-med-4">
-    <img src="{{bean.image}}">
-</div>
-
-<!--
-<div class="text-center" class="col-med-4"><p><small>{{bean.grower.name}}</small></p></div>
-
-	<div>
-		<dl>
-			<dt>Price:</dt>
-			<dd>{{bean.price | currency:'$':0}}</dd>
-		</dl>
-	</div>
-
-	<div class="col-med-4"> 
-        asdf
-	</div>
--->
-    
+    <div class="col-sm-12">
+        <div class="text-center">
+            <h2>{{bean.name}}: {{bean.price | currency:'$':0}}/lb</h2> 
+        </div>
+            <p3><img src="{{bean.image}}">{{bean.description}}</p3>
+    </div>
 </section>
+
+<section id="growerInfo" class="row">
+    <div class="col-sm-12">
+        <div class="text-center">
+            <h2>Origin: {{bean.grower.name}}</h2> 
+        </div>
+            <p3><img src="{{bean.grower.image}}">{{bean.grower.description}}</p3>
+    </div>
+</section>
+
+<section class="addToCart">
+    <div class="col-med-12">
+        <div class="text-center">
+          <h3>Purchase Here:</h3>
+          <form name="beanForm" class="form-horizontal" novalidate>
+            <div class="form-group form-inline">
+              <label for="grinds">Grind:</label>
+              <select name="grind" id="grind" class="form-control" ng-model="grind" ng-options="item for item in grinds">
+              </select>
+              <label for="quantity">Quantity:</label>
+              <select name="quantity" id="quantity" class="form-control" ng-model="quantity" ng-options="item for item in quantities">
+              </select>
+            <button type="submit" class="btn btn-primary" ng-if="bean" ng-click="addToCart(bean, grind, quantity)">Add to Cart</button>
+            </div>
+          </form>
+        </div>
+    </div>
+</section> <!-- end form section -->
