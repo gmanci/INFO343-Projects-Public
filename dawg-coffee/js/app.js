@@ -1,30 +1,5 @@
 'use strict';
 
-//angular.module('MoviesApp', ['ngSanitize', 'ui.router', 'ui.bootstrap'])
-//.config(function($stateProvider){
-//	$stateProvider
-//		.state('home', {
-//			url: '/', //"root" directory
-//			templateUrl: 'partials/home.html',
-//			controller: 'MoviesCtrl'
-//		})
-//		.state('blog', {
-//			url: '/blog',
-//			templateUrl: 'partials/blog.html',
-//			controller: 'BlogCtrl'
-//		})	
-//		.state('detail', {
-//			url: '/movie/{id}',
-//			templateUrl: 'partials/movie-detail.html',
-//			controller: 'DetailCtrl'
-//		})
-//		.state('watchlist', {
-//			url: '/watchlist',
-//			templateUrl: 'partials/watchlist.html',
-//			controller: 'WatchListCtrl'
-//		})	
-//
-//})
 
 angular.module('myApp', ['ngSanitize', 'ui.router'])
     .config(function($stateProvider) {
@@ -33,11 +8,10 @@ angular.module('myApp', ['ngSanitize', 'ui.router'])
           url: "/home",
           templateUrl: "partials/home.html"
         })
-//        .state('detail', {
-//			url: '/movie/{id}',
-//			templateUrl: 'partials/movie-detail.html',
-//			controller: 'DetailCtrl'
-//		})
+        .state('cart', {
+          url: "/order/cart",
+          templateUrl: "partials/cart.html"
+        })
         .state('detail', {
           url: "/bean/{id}",
           templateUrl: "partials/bean.html",
@@ -64,12 +38,13 @@ angular.module('myApp', ['ngSanitize', 'ui.router'])
 
 
 //For details view
-.controller('BeanCtrl', ['$scope', '$http', '$stateParams', '$filter', function($scope, $http, $stateParams, $filter) {
+.controller('BeanCtrl', ['$scope', '$http', '$stateParams', '$filter', 'watchListService', function($scope, $http, $stateParams, $filter) {
     
     $scope.grinds = ['Whole Bean', 'Espresso', 'French Press', 'Cone Drip', 'Flat Bottom'];
     $scope.grind = 'Whole Bean'; //default
     $scope.quantities = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
     $scope.quantity = '1'; //default
+    
     
 	$http.get('data/products.json').then(function(response) {
    	$scope.bean = $filter('filter')(response.data, { //filter the array
@@ -80,8 +55,22 @@ angular.module('myApp', ['ngSanitize', 'ui.router'])
     $scope.addToCart = function(bean, grind, quantity){
     bean.grind = $scope.grinds.indexOf(grind);
     bean.quantity = $scope.quantities.indexOf(quantity);
-    watchListService.saveFilm(movie);
+    watchListService.saveBean(bean);
 }
     
-}]);
+}])
+
+.factory('watchListService', function(){
+
+	var service = {};
+
+	service.list = [];
+
+	service.saveBean = function(bean){
+		console.log("adding bean to cart");
+		service.list.push(bean);
+	};
+
+	return service;
+});
 
