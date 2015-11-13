@@ -1,14 +1,1 @@
-<div class="cartSelection">
-    <table class="table">
-			<tr>
-                <th></th>
-				<th>Beans (click for more info)</th>
-				<th>Origin</th>
-			</tr>
-			<tr ng-repeat="bean in beans | orderBy:bean.name | filter:searchText">
-                <td><img class="beanPic" src="{{bean.image}}"></td>
-                <td><a class="beanLink" ui-sref="detail({id: bean.id})">{{bean.name}}</a></td>
-				<td>{{bean.grower.name}}</td>
-			</tr>
-            </table>
-</div>
+<h1>cart</h1>
