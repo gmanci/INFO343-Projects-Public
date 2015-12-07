@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html>
 <head>
     <title>Dawg Coffee</title>
     <meta charset="UTF-8">
@@ -9,15 +9,24 @@
     <link href='https://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Lato:300italic,400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<!-- load angular -->
+    <!-- load angular -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.js"</script>
+    <!-- load external libraries -->
+    
+<!--    <script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script>-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-sanitize.js"></script>
+    <!-- load my script -->
+    <script src="js/app.js"></script>
+    <base href="/">
+<!--
     <script>
         var myApp = angular.module('myApp', ['ui.router']);
     </script>
+-->
 </head>
 
 <!--<body ng-controller="HomeController">-->
-<body ng-controller="CoffeeCtlr">
+<body ng-app="dawgApp" ng-controller="CoffeeCtlr">
     <main class="container-fluid">
     <header class="row">
     <nav>
@@ -55,14 +64,15 @@
             </div>
     </footer>
 </div>
-<!--</main>-->
 
-<!-- load external libraries -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
-<!--<script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script>-->
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-sanitize.js"></script>
-<!-- load our script -->
-<script src="js/app.js"></script>
+    <!-- load external libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <!--<script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script>-->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-sanitize.js"></script>
+<!--
+     load my script 
+    <script src="js/app.js"></script>
+-->
 
 </body>
 
