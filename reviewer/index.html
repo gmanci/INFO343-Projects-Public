@@ -17,15 +17,14 @@
     <main class="container-fluid">
     
     <h1>Nathan for You: A Review Page</h1>
-    <img id="nathan" src="nathanpic.jpg">
+    <img id="nathan" src="/img/nathan.jpg">
     
     
-<!--    <div id="starRating"></div>-->
     
     <form id="nathanReview" method='GET'>
         <div class="col-md-4">
         <p>
-            <div id = starRating></div>
+            <div id="starRating"></div>
             <label for="title">Review Title</label>
             <input type="text" name="selector" id="title" placeholder="review title"> <br>
             <label for="content">Review:</label>
@@ -34,6 +33,7 @@
         </p>
         </div>
     </form>
+    
     
     <form class="col-md-4">
             <div id = pastReviews></div>
@@ -45,11 +45,13 @@
     <!-- Parse.com library -->
     <script src="https://www.parsecdn.com/js/parse-1.6.0.min.js"></script>
     
+    <!-- raty -->
+    <script src="raty-2.7.0/lib/jquery.raty.js"></script>
+    
+    
     <!-- my personal javascript -->
     <script src="review.js"></script>
     
-    <!-- raty -->
-    <script src="raty-2.7.0/lib/jquery.raty.js"></script>
     
     
     </main>
