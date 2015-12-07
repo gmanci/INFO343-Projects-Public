@@ -61,19 +61,25 @@ var fetchInfo = new function(){
             
             
             $('#pastReviews').append(rating);
-            $('#pastReviews').append(pastTitle);
+            $('#pastReviews').append("<div id='title'>" + pastTitle + "</div>");
             $('#pastReviews').append(pastContent);
             $('#pastReviews').append("<button id='delete' type='submit' class='btn btn-default deleteButton' data-id=" + info.id + "> Delete</button>");
             $('#pastReviews').append("<button id='upvote' type='submit' class='btn btn-default up' data-id=" + info.id + "> &#11014; </button>");
             $('#pastReviews').append("<button id='downvote' type='submit' class='btn btn-default down' data-id=" + info.id + "> &#11015; </button>");
             $('#pastReviews').append(" score: " + votes + "<br>" + "<br>");
-        });
+        })
         
-    //processes to be completed after getting the data    
+        
+        //returns an average rating for all reviews
+        var sum = 0;
+        for (var i = 0; i < results.length; ++i) {
+            sum += results[i].get("rating");
+        }
+        var avg = (sum / results.length);
+        avg = avg.toFixed(1);
+        $('#average').append(" Average rating: " + avg + "/5");
+         
     }).then(function() {
-        
-        
-        
         //delete review function
         $(".deleteButton").on("click", function(e){
             e.preventDefault();
@@ -100,8 +106,8 @@ var fetchInfo = new function(){
                 var prevVote = myObj.get("votes");
                 myObj.set("votes", prevVote + 1);
                 myObj.save();
-                    }
-                }); 
+                }
+            }); 
         });
         
         //downvote function
@@ -115,9 +121,8 @@ var fetchInfo = new function(){
                 myObj.set("votes", prevVote - 1);
                 myObj.save();
                     }
-                }); 
+            }); 
         });
-        
     });
 };
 
