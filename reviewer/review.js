@@ -4,19 +4,18 @@ Parse.initialize("Dlxupphs37O4NRlGoyDuawGFuI5QEJttqKXkKKem","qKjAadA3AzaLeelOifq
 
 var Review = Parse.Object.extend("Review");
 
+//variables for the input 
 var reviewTitle;
 var reviewContent;
 var reviewRating;
 
-
-
-
-
+//images for highlighted and non-highlighted stars
 $('#starRating').raty({
     starOn: "raty-2.7.0/lib/images/star-on.png",
     starOff: "raty-2.7.0/lib/images/star-off.png"
 });
 
+//creates a new review from user's entries on site
 $('#nathanReview').on('submit', function(event){
     var review1 = new Review();
     reviewTitle = $('#title').val();
@@ -37,6 +36,7 @@ $('#nathanReview').on('submit', function(event){
     return false;              //most older browsers
 });
 
+//gathers info and displays past reviews on page
 var fetchInfo = new function(){
     var query = new Parse.Query(Review);
     query.find().then(function(results) {
@@ -52,22 +52,29 @@ var fetchInfo = new function(){
                 }});
             var title = info.get('title').replace(/</g, "&lt;").replace(/</g, "&gt;");
             var content = info.get('content').replace(/</g, "&lt;").replace(/</g, "&gt;");
-            var past = title + "<br>" + content + "<br>";
+            var pastTitle = title + "<br>";
+            var pastContent = content + "<br>";
             var votes = info.get("votes");
+            if (votes === undefined) {
+                    votes = 0;
+                }
             
             
             $('#pastReviews').append(rating);
-            $('#pastReviews').append("<div id='pastReviews"+info.id+"'>" + past + "</div>");
-            $("#pastReviews"+info.id).text(past);
+            $('#pastReviews').append(pastTitle);
+            $('#pastReviews').append(pastContent);
             $('#pastReviews').append("<button id='delete' type='submit' class='btn btn-default deleteButton' data-id=" + info.id + "> Delete</button>");
-            $('#pastReviews').append("<button id='upvote' type='submit' class='btn btn-default up' data-id=" + info.id + "> Upvote</button>");
-            $('#pastReviews').append("<button id='downvote' type='submit' class='btn btn-default down' data-id=" + info.id + "> Downvote</button>");
-            $('#pastReviews').append(votes);
+            $('#pastReviews').append("<button id='upvote' type='submit' class='btn btn-default up' data-id=" + info.id + "> &#11014; </button>");
+            $('#pastReviews').append("<button id='downvote' type='submit' class='btn btn-default down' data-id=" + info.id + "> &#11015; </button>");
+            $('#pastReviews').append(" score: " + votes + "<br>" + "<br>");
         });
-     
-       console.log("test");
         
+    //processes to be completed after getting the data    
     }).then(function() {
+        
+        
+        
+        //delete review function
         $(".deleteButton").on("click", function(e){
             e.preventDefault();
             var id = $(e.target).attr("data-id");
@@ -83,6 +90,7 @@ var fetchInfo = new function(){
                 }); 
         });
 
+        //upvote function
         $(".up").on("click", function(e){
             e.preventDefault();
             var id = $(e.target).attr("data-id");
@@ -90,17 +98,23 @@ var fetchInfo = new function(){
                 success: function(myObj) {
                 // The object was retrieved successfully.
                 var prevVote = myObj.get("votes");
-                if (prevVote === undefined) {
-                    prevVote = 0;
-                }
                 myObj.set("votes", prevVote + 1);
                 myObj.save();
-                    
-                },
-                error: function(object, error) {
-                // The object was not retrieved successfully.
-                // error is a Parse.Error with an error code and description.
-                      }
+                    }
+                }); 
+        });
+        
+        //downvote function
+        $(".down").on("click", function(e){
+            e.preventDefault();
+            var id = $(e.target).attr("data-id");
+            query.get(id, {
+                success: function(myObj) {
+                // The object was retrieved successfully.
+                var prevVote = myObj.get("votes");
+                myObj.set("votes", prevVote - 1);
+                myObj.save();
+                    }
                 }); 
         });
         

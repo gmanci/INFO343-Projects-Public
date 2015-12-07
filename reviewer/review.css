@@ -7,6 +7,26 @@ body {
    background-color: #E9EAEE;
 }
 
+p {
+    padding: 15px;
+}
+
 #nathan {
-    height: 250px;
+    height: auto;
+    align-items: center;
+    width: 100%;
+}
+
+#info h1{
+    text-align: center;
+}
+
+#nathanReview {
+    align-content: center;
+}
+
+@media (min-width: 992px){
+    #nathan {
+        width: 50%;
+    }
 }

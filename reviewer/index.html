@@ -16,27 +16,32 @@
 <body>
     <main class="container-fluid">
     
-    <h1>Nathan for You: A Review Page</h1>
-    <img id="nathan" src="/img/nathan.jpg">
+    <div id="info">
+        <h1 class="col-md-12">Nathan for You: A Review Page</h1>
+        <img id="nathan" class="col-md-6" src="/img/nathan.jpg">
+        <p class="col-med-6">Nathan for You is an American docu-reality comedy television series starring comedian Nathan Fielder. In the series, Fielder plays an off-kilter version of himself, who tries to use his business background and life experiences to help struggling companies and people, frequently offering them outlandish strategies.</p>
+    </div>
     
+    <container id="nathanReview">
+        <form method='GET'>
+            <div class="col-md-6">
+            <p>
+                <h3>Know this show? Review it yourself!</h2>
+                <div id="starRating"></div>
+                <label for="title">Review Title:</label>
+                <input type="text" name="selector" id="title" placeholder="review title"> <br>
+                <label for="content">Review:</label>
+                <input type="text" name="content" id="content" placeholder="review body">
+                <button id="Submit" type="submit" class="btn btn-default">Submit</button>
+            </p>
+            </div>
+        </form>
+    </container>
     
-    
-    <form id="nathanReview" method='GET'>
-        <div class="col-md-4">
-        <p>
-            <div id="starRating"></div>
-            <label for="title">Review Title</label>
-            <input type="text" name="selector" id="title" placeholder="review title"> <br>
-            <label for="content">Review:</label>
-            <input type="text" name="content" id="content" placeholder="review body"> <br>
-            <button id="Submit" type="submit" class="btn btn-default">Submit</button>
-        </p>
-        </div>
-    </form>
-    
-    
-    <form class="col-md-4">
-            <div id = pastReviews></div>
+<!--    class="col-md-4"   -->
+    <form class="col-md-12">
+            <h3>Past Reviews:</h3>
+            <div id="pastReviews"></div>
     </form>
     
     <!-- jQuery library -->
