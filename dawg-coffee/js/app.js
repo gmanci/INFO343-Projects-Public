@@ -1,25 +1,31 @@
 'use strict';
 
 
-var myApp = angular.module('dawgApp', ['ngSanitize', 'ui.router'])
+var myApp = angular.module('dawgApp', ['ngSanitize', 'ui.router', 'firebase']);
 
-    .factory('myService', function(){
-
-        var service = {};
-
-        service.list = [];
-
-        service.saveBean = function(bean){
-            console.log("adding bean to cart");
-            service.list.push(bean);
-        };
-
-        return service;
+myApp.config(function($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise("/");
+        $stateProvider
+        .state('home', {
+          url: "/home",
+          templateUrl: "partials/home.html"
+        })
+        .state('cart', {
+          url: "/cart",
+          templateUrl: "partials/cart.html",
+          controller: 'CartCtrl'
+        })
+        .state('detail', {
+          url: "/bean/{id}",
+          templateUrl: "partials/bean.html",
+          controller: 'BeanCtrl'
+        })
+        .state('order', {
+          url: "/order",
+          templateUrl: "partials/order.html"
+        });
     })
-
-
-
-    .controller('CoffeeCtlr', ['$scope', '$http', 'myService', function($scope, $http){
+    .controller('CoffeeCtlr', ['$scope', '$http', '$firebaseObject', '$firebaseArray', function($scope, $http, $firebaseObject, $firebaseArray) {
 
         $scope.sortingCriteria = '';
 
@@ -27,19 +33,22 @@ var myApp = angular.module('dawgApp', ['ngSanitize', 'ui.router'])
             $scope.beans = response.data;
         });
 
-        $scope.saveBean = function(bean){
-            bean.Name = bean.name;
-            bean.Grind = 'Whole Bean';
-            movie.quantity = '1';
-            myService.saveBean(bean);	
-        } 
+//        $scope.saveBean = function(bean){
+//            bean.Name = bean.name;
+//            bean.Grind = bean.name;
+//            bean.Quantity = bean.quantity;
+//            myService.saveBean(bean);	
+//        }; 
     }])
 
 
 
     //For details view
-    .controller('BeanCtrl', ['$scope', '$http', '$stateParams', '$filter', 'myService', function($scope, $http, $stateParams, $filter) {
-
+    .controller('BeanCtrl', ['$scope', '$http', '$firebaseObject', '$firebaseArray', '$stateParams', '$filter', function($scope, $http, $firebaseObject, $firebaseArray, $stateParams, $filter) {
+        
+        
+        
+        
         $scope.grinds = ['Whole Bean', 'Espresso', 'French Press', 'Cone Drip', 'Flat Bottom'];
         $scope.grind = 'Whole Bean'; //default
         $scope.quantities = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
@@ -53,52 +62,51 @@ var myApp = angular.module('dawgApp', ['ngSanitize', 'ui.router'])
         }, true)[0]; //save the 0th result
         });
 
-        $scope.addToCart = function(bean, grind, quantity){
-            bean.grind = $scope.grinds.indexOf(grind);
-            bean.quantity = $scope.quantities.indexOf(quantity);
-            myService.saveBean(bean);
-        }
+        // Reference to firebase
+    var ref = new Firebase('https://firedawgcoffee.firebaseio.com/Cart');
+    
+    
+    // Stores new events created on /events page
+    $scope.cartObject = {}; 
+    
+    // Sends to firebase
+    $scope.addToCart = function(bean, price) {
+        ref.push({
+            bean: bean,
+            price: price,
+            grind: $scope.cartObject.grind,
+            quantity: $scope.cartObject.quantity
+        }, function(error, eData) {
+            if(error) {
+                console.log(error);
+            } else {
+                console.log("Success");
+                window.location.reload();
+            }
+        })
+    }
+        
+//        $scope.addToCart = function(bean, grind, quantity){
+//            bean.name = $scope.bean.name;
+//            bean.grind = $scope.grinds.indexOf(grind);
+//            bean.quantity = $scope.quantities.indexOf(quantity);
+//            myService.saveBean(bean);
+//        };
 
     }])
 
-    .controller('CartCtlr', ['$scope', '$http', '$uibModal', 'myService', function($scope, $http, $uibModal, watchListService) {
+    .controller('CartCtrl', ['$scope', '$http', '$uibModal', 'bean', function($scope, $http, $uibModal, bean) {
 
-        $scope.cartList = myService.list;
+//        $scope.cartList = myService.list;
 
         $scope.saveBean = function(bean, grind, quantity){
             bean.grind =   $scope.grinds.indexOf(grind);
             bean.quantity =   $scope.quantities.indexOf(quantity);
-            myService.saveBean(bean);
-        }
+//            myService.saveBean(bean);
+        };
 
 
-    }])
-
-    .config(function($stateProvider, $urlRouterProvider) {
-    
-    $urlRouterProvider.otherwise("/");
-    
-      $stateProvider
-        .state('home', {
-          url: "/home",
-          templateUrl: "partials/home.html",
-          controller: 'CoffeeCtrl'
-        })
-        .state('cart', {
-          url: "/order/cart",
-          templateUrl: "partials/cart.html",
-          controller: 'CartCtrl'
-        })
-        .state('detail', {
-          url: "/bean/{id}",
-          templateUrl: "partials/bean.html",
-          controller: 'BeanCtrl'
-        })
-        .state('order', {
-          url: "/order",
-          templateUrl: "partials/order.html"
-        });
-    });
+    }]);
 
 
 

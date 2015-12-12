@@ -1,1 +1,9 @@
-<br><h1>cart</h1>
+<div ng-controller="CartCtrl">
+    <br><h1>cart</h1>
+    <tr ng-repeat="bean in beans | orderBy:bean.name | filter:searchText">
+                <td><img class="beanPic" src="{{bean.image}}"></td>
+                <td><a class="beanLink" ui-sref="detail({id: bean.id})">{{bean.name}}</a></td>
+				<td>{{bean.grower.name}}</td>
+                <td>{{bean.price | currency:'$'}}/lb</td>
+			</tr>
+</div>

@@ -15,11 +15,13 @@
                 <th></th>
 				<th>Beans (click for more info)</th>
 				<th>Origin</th>
+                <th>Price</th>
 			</tr>
 			<tr ng-repeat="bean in beans | orderBy:bean.name | filter:searchText">
                 <td><img class="beanPic" src="{{bean.image}}"></td>
                 <td><a class="beanLink" ui-sref="detail({id: bean.id})">{{bean.name}}</a></td>
 				<td>{{bean.grower.name}}</td>
+                <td>{{bean.price | currency:'$'}}/lb</td>
 			</tr>
             </table>
 </div>

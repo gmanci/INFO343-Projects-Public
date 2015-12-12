@@ -64,6 +64,11 @@ nav {
     font-variant: small-caps;
 }
 
+.homeContent {
+    border-left: 5px;
+    border-right: 5px;
+}
+
 #cart {
     text-align: right;
 }
