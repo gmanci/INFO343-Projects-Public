@@ -1,9 +1,20 @@
-<div ng-controller="CartCtrl">
-    <br><h1>cart</h1>
-    <tr ng-repeat="bean in beans | orderBy:bean.name | filter:searchText">
-                <td><img class="beanPic" src="{{bean.image}}"></td>
-                <td><a class="beanLink" ui-sref="detail({id: bean.id})">{{bean.name}}</a></td>
-				<td>{{bean.grower.name}}</td>
-                <td>{{bean.price | currency:'$'}}/lb</td>
-			</tr>
+<!--<div ng-controller="CoffeeCtlr">-->
+<div>
+    <br><h1>Your Cart</h1>
+    <table class="table">
+        <tr>
+            <th>Bean</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        <tr ng-repeat="object in cart">
+            <td>{{object.bean}}</td>
+            <td>
+                <button class="btn btn-default" type="submit" id="upQ{{object.$id}}" ng-click="upQ(post.$id)"> &#11014; </button>
+                {{object.quantity}}
+                <button class="btn btn-default" type="submit" id="downQ{{object.$id}}" ng-click="downQ(object.$id)"> &#11015; </button>
+            </td>
+            <td>{{object.price | currency:'$'}}/lb</td>
+        </tr>
+    </table>
 </div>

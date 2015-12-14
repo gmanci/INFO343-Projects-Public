@@ -12,13 +12,11 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         })
         .state('cart', {
           url: "/cart",
-          templateUrl: "partials/cart.html",
-          controller: 'CartCtrl'
+          templateUrl: "partials/cart.html"
         })
         .state('detail', {
           url: "/bean/{id}",
-          templateUrl: "partials/bean.html",
-          controller: 'BeanCtrl'
+          templateUrl: "partials/bean.html"
         })
         .state('order', {
           url: "/order",
@@ -32,13 +30,44 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         $http.get('data/products.json').then(function(response) {
             $scope.beans = response.data;
         });
+        
+        // Reference to firebase
+        var cartRef = new Firebase('https://firedawgcoffee.firebaseio.com/Cart');
+        
+        // Array for holding all Cart contents
+        if ($scope.cart === undefined) {
+            $scope.cart = [];
+        }
 
-//        $scope.saveBean = function(bean){
-//            bean.Name = bean.name;
-//            bean.Grind = bean.name;
-//            bean.Quantity = bean.quantity;
-//            myService.saveBean(bean);	
-//        }; 
+        // Makes sure cart page is loaded, then adds cart items
+        cartRef.once("value", function(snapshot) {
+            console.log(snapshot.val());
+            snapshot.forEach(function(childSnapshot) {
+                $scope.cart.push(childSnapshot.val());
+                console.log($scope.cart);
+            });
+            
+        // Checks to see if objects were able to load, throws error if not
+        }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
+        });
+        
+        //Add quantity functionality
+        $scope.upQ = function(itemID) {
+            var post = cartRef.$getRecord(itemID);
+            console.log(itemID);
+            Object.quantity += 1;
+            cartRef.$save(Object);
+        }
+
+        //Lower quantity functionality
+        $scope.downQ = function(itemID) {
+            var post = cartRef.$getRecord(itemID);
+            console.log(itemID);
+            Object.quantity -= 1;
+            cartRef.$save(Object);
+        }
+        
     }])
 
 
@@ -46,15 +75,10 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     //For details view
     .controller('BeanCtrl', ['$scope', '$http', '$firebaseObject', '$firebaseArray', '$stateParams', '$filter', function($scope, $http, $firebaseObject, $firebaseArray, $stateParams, $filter) {
         
-        
-        
-        
         $scope.grinds = ['Whole Bean', 'Espresso', 'French Press', 'Cone Drip', 'Flat Bottom'];
         $scope.grind = 'Whole Bean'; //default
         $scope.quantities = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
         $scope.quantity = '1'; //default
-
-
 
         $http.get('data/products.json').then(function(response) {
         $scope.bean = $filter('filter')(response.data, { //filter the array
@@ -66,7 +90,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
     var ref = new Firebase('https://firedawgcoffee.firebaseio.com/Cart');
     
     
-    // Stores new events created on /events page
+    // Stores new beans created on /cart page
     $scope.cartObject = {}; 
     
     // Sends to firebase
@@ -84,29 +108,34 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
                 window.location.reload();
             }
         })
-    }
-        
-//        $scope.addToCart = function(bean, grind, quantity){
-//            bean.name = $scope.bean.name;
-//            bean.grind = $scope.grinds.indexOf(grind);
-//            bean.quantity = $scope.quantities.indexOf(quantity);
-//            myService.saveBean(bean);
-//        };
-
-    }])
-
-    .controller('CartCtrl', ['$scope', '$http', '$uibModal', 'bean', function($scope, $http, $uibModal, bean) {
-
-//        $scope.cartList = myService.list;
-
-        $scope.saveBean = function(bean, grind, quantity){
-            bean.grind =   $scope.grinds.indexOf(grind);
-            bean.quantity =   $scope.quantities.indexOf(quantity);
-//            myService.saveBean(bean);
-        };
-
-
+    };
     }]);
+
+//    .controller('CartCtrl', ['$scope', '$firebaseObject', '$firebaseArray', function($scope, $firebaseObject, $firebaseArray) {
+//
+//        // Reference to firebase
+//        var cartRef = new Firebase('https://firedawgcoffee.firebaseio.com/Cart');
+//        
+//        // Array for holding all Cart contents
+//        if ($scope.cart === undefined) {
+//            $scope.cart = [];
+//        }
+//
+//        // Makes sure cart page is loaded, then adds cart items
+//        cartRef.once("value", function(snapshot) {
+//            console.log(snapshot.val());
+//            snapshot.forEach(function(childSnapshot) {
+//                $scope.cart.push(childSnapshot.val());
+//                console.log($scope.cart);
+//            });
+//            
+//        // Checks to see if objects were able to load, throws error if not
+//        }, function (errorObject) {
+//            console.log("The read failed: " + errorObject.code);
+//        });
+//
+//
+//    }]);
 
 
 
