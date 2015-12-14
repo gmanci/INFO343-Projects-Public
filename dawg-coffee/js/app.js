@@ -4,7 +4,7 @@
 var myApp = angular.module('dawgApp', ['ngSanitize', 'ui.router', 'firebase']);
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise("/home#info");
+        $urlRouterProvider.otherwise("/");
         $stateProvider
         .state('home', {
           url: "/partials/home",
