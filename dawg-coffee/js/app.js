@@ -7,7 +7,7 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/home#info");
         $stateProvider
         .state('home', {
-          url: "/home",
+          url: "/partials/home",
           templateUrl: "partials/home.html"
         })
         .state('cart', {
