@@ -6,7 +6,7 @@
 > n/a
 
 ##### 2. Did you complete any advanced extensions to this challenge? If so, what? #####
-> n/a
+> My shopping cart is built using firebase
 
 ##### 3. Approximately how many hours did it take you to complete this challenge? #####
 > ~12
