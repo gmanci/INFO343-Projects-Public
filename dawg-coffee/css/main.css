@@ -109,6 +109,10 @@ li {
 }
 
 
+#ourstory {
+    padding-bottom: 50px;
+}
+
 #ourstory, footer {
     background-color: #dbdce3;
 }
@@ -139,10 +143,18 @@ footer {
     border-top-color: #d87e28;
     font-size: 12px;
     background-color: #afb3c2;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    margin-left: 0px;
 }
 
-footer.p, footer.p2 {
+footer.p, footer.p2, footer.row {
     margin-top: 1em;
+}
+
+footer.row {
+    margin-left: 0px;
 }
 
 @media (max-width: 768px){
