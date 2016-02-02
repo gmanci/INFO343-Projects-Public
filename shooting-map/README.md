@@ -1,3 +1,6 @@
+LIVE WEBSITE HERE: http://students.washington.edu/gmanci/info343/challenges/shooting-map/
+
+
 # Map Challenge: Police Shootings
 
 This folder contains your submission for the [map challenge](http://info343-joelross.rhcloud.com/challenges/map). The below questions should be answered with details about your submission!
