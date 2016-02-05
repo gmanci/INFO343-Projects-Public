@@ -8,19 +8,19 @@ myApp.config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
         .state('home', {
           url: "/",
-          templateUrl: "/partials/home.html"
+          templateUrl: "partials/home.html"
         })
         .state('cart', {
           url: "/cart",
-          templateUrl: "/partials/cart.html"
+          templateUrl: "partials/cart.html"
         })
         .state('detail', {
           url: "/bean/{id}",
-          templateUrl: "/partials/bean.html"
+          templateUrl: "partials/bean.html"
         })
         .state('order', {
           url: "/order",
-          templateUrl: "/partials/order.html"
+          templateUrl: "partials/order.html"
         });
     })
     .controller('CoffeeCtlr', ['$scope', '$http', '$firebaseObject', '$firebaseArray', function($scope, $http, $firebaseObject, $firebaseArray) {
