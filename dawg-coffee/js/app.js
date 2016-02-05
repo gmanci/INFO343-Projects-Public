@@ -4,10 +4,10 @@
 var myApp = angular.module('dawgApp', ['ngSanitize', 'ui.router', 'firebase']);
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise("/partials/home");
+        $urlRouterProvider.otherwise("/");
         $stateProvider
         .state('home', {
-          url: "/partials/home",
+          url: "/",
           templateUrl: "/partials/home.html"
         })
         .state('cart', {
