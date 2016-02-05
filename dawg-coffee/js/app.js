@@ -4,23 +4,23 @@
 var myApp = angular.module('dawgApp', ['ngSanitize', 'ui.router', 'firebase']);
 
 myApp.config(function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/partials/home");
         $stateProvider
         .state('home', {
           url: "/partials/home",
-          templateUrl: "partials/home.html"
+          templateUrl: "/partials/home.html"
         })
         .state('cart', {
           url: "/cart",
-          templateUrl: "partials/cart.html"
+          templateUrl: "/partials/cart.html"
         })
         .state('detail', {
           url: "/bean/{id}",
-          templateUrl: "partials/bean.html"
+          templateUrl: "/partials/bean.html"
         })
         .state('order', {
           url: "/order",
-          templateUrl: "partials/order.html"
+          templateUrl: "/partials/order.html"
         });
     })
     .controller('CoffeeCtlr', ['$scope', '$http', '$firebaseObject', '$firebaseArray', function($scope, $http, $firebaseObject, $firebaseArray) {
