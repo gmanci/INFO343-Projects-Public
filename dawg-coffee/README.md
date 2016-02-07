@@ -1,3 +1,5 @@
+LIVE SITE: http://students.washington.edu/gmanci/info343/challenges/fixed-dawg-coffee/INFO343-Projects-Public/dawg-coffee/#/
+
 # Shopping Cart Challenge: Dawg Orders
 
 *Update!* This folder contains your submission for the [shopping cart challenge](http://info343-joelross.rhcloud.com/challenges/cart). Please answer the below questions with details about your submission for this later challenge.
