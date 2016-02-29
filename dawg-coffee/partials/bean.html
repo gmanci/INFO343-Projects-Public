@@ -28,7 +28,7 @@
         <div ng-controller="BeanCtrl" class="text-center">
           <h3>Purchase Here:</h3>
           <form name="beanForm" class="form-horizontal" novalidate>
-            <div class="form-group form-inline">
+            <div id="beanForm" class="form-group form-inline">
               <label for="grinds">Grind:</label>
               <select name="grind" id="grind" class="form-control" ng-model="cartObject.grind" ng-options="item for item in grinds">
               </select>
